@@ -54,7 +54,7 @@ $(document).ready(function() {
         databaseURL: "https://rudimentary-chatroom.firebaseio.com/",
     };
 
-    console.log("ur mum gay");
+    console.log("ur mum triple gay");
 
     firebase.initializeApp(config);
 
@@ -80,14 +80,16 @@ $(document).ready(function() {
             chat.pop();
         }
 
+        objThingy = {
+            chat:chat,
+            users:users
+        };
+
         database.ref().set({
             objThingy:JSON.stringify(objThingy)
         });
     });
-    
 
-
-    console.log(database.val);
 
     database.ref().on("value", function(snapshot) {
 
@@ -112,6 +114,11 @@ $(document).ready(function() {
                 users[name]--;
                 users[$(this).attr("data-author")]++;
                 chat[$(this).attr("data-post-number")].score++;
+
+                objThingy = {
+                    chat:chat,
+                    users:users
+                };
 
                 database.ref().set({
                     objThingy:JSON.stringify(objThingy)
