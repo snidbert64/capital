@@ -58,6 +58,7 @@ $(document).ready(function() {
 
     firebase.initializeApp(config);
 
+    var objThingy;
     var users;
     var chat;
 
@@ -80,7 +81,7 @@ $(document).ready(function() {
         }
 
         database.ref().set({
-            chat:chat
+            objThingy:JSON.stringify(objThingy)
         });
     });
     
@@ -92,8 +93,9 @@ $(document).ready(function() {
 
         // Log everything that's coming out of snapshot
         console.log(snapshot.val());
-        chat = snapshot.val().chat;
-        users = snapshot.val().users;
+        objThingy = JSON.parse(snapshot.val().objThingy);
+        chat = objThingy.chat;
+        users = objThingy.users;
         
 
         $("#chat").empty();
@@ -112,8 +114,7 @@ $(document).ready(function() {
                 chat[$(this).attr("data-post-number")].score++;
 
                 database.ref().set({
-                    chat:chat,
-                    users: users
+                    objThingy:JSON.stringify(objThingy)
                 });
             }
         });
@@ -128,8 +129,7 @@ $(document).ready(function() {
     
 
     database.ref().set({
-            chat:chat,
-            users: users
+        objThingy:JSON.stringify(objThingy)
     });
 });
 </script>
