@@ -80,6 +80,11 @@ $(document).ready(function() {
             chat.pop();
         }
 
+        objThingy = {
+            chat:chat,
+            users:users
+        };
+
         database.ref().set({
             objThingy:JSON.stringify(objThingy)
         });
@@ -112,6 +117,11 @@ $(document).ready(function() {
                 users[name]--;
                 users[$(this).attr("data-author")]++;
                 chat[$(this).attr("data-post-number")].score++;
+
+                objThingy = {
+                    chat:chat,
+                    users:users
+                };
 
                 database.ref().set({
                     objThingy:JSON.stringify(objThingy)
