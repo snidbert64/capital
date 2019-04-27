@@ -11,7 +11,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
     
     <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+
     
     <!-- Moment.js Reference -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -46,16 +48,19 @@ $(document).ready(function() {
         }
     }
     
-    var config = {
-        authDomain: "https://rudimentary-chatroom.firebaseio.com/",
-        databaseURL: "https://rudimentary-chatroom.firebaseio.com/",
-    };
 
-    console.log("ur mum double gay");
+    console.log("ur mum quadruple gay");
 
-    firebase.initializeApp(config);
+    firebase.initializeApp({
+        apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
+        authDomain: 'https://capital-1556235479390.firebaseio.com/',
+        projectId: 'capital-1556235479390'
+    });
+
+    import "firebase/app";
+    import "firebase/firestore";
     
-    var db = firebase.database();
+    var db = firebase.firestore();
 
     db.collection("posts").where("score", ">", "-1")
     .onSnapshot(function(querySnapshot) {
@@ -63,7 +68,7 @@ $(document).ready(function() {
         querySnapshot.forEach(function(doc) {
             posts.push(doc.data().name);
         });
-        console.log("Current cities in CA: ", cities.join(", "));
+        console.log(posts);
     });
 
     
