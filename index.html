@@ -45,99 +45,28 @@ $(document).ready(function() {
             users[name] = 100;
         }
     }
-
-
-
     
     var config = {
         authDomain: "https://rudimentary-chatroom.firebaseio.com/",
         databaseURL: "https://rudimentary-chatroom.firebaseio.com/",
     };
 
-    console.log("ur mum triple gay");
+    console.log("ur mum double gay");
 
     firebase.initializeApp(config);
+    
+    var db = firebase.database();
 
-    var objThingy;
-    var users;
-    var chat;
-
-    var chatMessage;            
-
-    var database = firebase.database();
-
-    $("#add-chat").on("click", function(event) {
-        // event.preventDefault() prevents the form from trying to submit itself.
-        // We're using a form so that the user can hit enter instead of clicking the button if they want
-        event.preventDefault();
-
-        // This line will grab the text from the input box
-        chatMessage = $("#chat-input").val().trim();
-        $("#chat-input").val("");
-        chat.unshift({post:chatMessage, author:name, score:0});
-
-        if (chat.length > 50) {
-            chat.pop();
-        }
-
-        objThingy = {
-            chat:chat,
-            users:users
-        };
-
-        database.ref().set({
-            objThingy:JSON.stringify(objThingy)
+    db.collection("posts").where("score", ">", "-1")
+    .onSnapshot(function(querySnapshot) {
+        var posts = [];
+        querySnapshot.forEach(function(doc) {
+            posts.push(doc.data().name);
         });
+        console.log("Current cities in CA: ", cities.join(", "));
     });
-
-
-    database.ref().on("value", function(snapshot) {
-
-        // Log everything that's coming out of snapshot
-        console.log(snapshot.val());
-        objThingy = JSON.parse(snapshot.val().objThingy);
-        chat = objThingy.chat;
-        users = objThingy.users;
-        
-
-        $("#chat").empty();
-        for (var i=0; i < chat.length; i++){
-            var postDiv = $("<div>");
-            postDiv.append($("<h4>" + chat[i].author + "</h4>"));
-            postDiv.append($("<button class='upvote-button' data-post-number='" + i +"' data-author='"+ chat[i].author +"'>Upvote</button>"));
-            postDiv.append($("<p>" + chat[i].post + "/<p>"));
-
-        }
-
-        $(".upvote-button").on("click", function(){
-            if ($(this).attr("data-author") != name){
-                users[name]--;
-                users[$(this).attr("data-author")]++;
-                chat[$(this).attr("data-post-number")].score++;
-
-                objThingy = {
-                    chat:chat,
-                    users:users
-                };
-
-                database.ref().set({
-                    objThingy:JSON.stringify(objThingy)
-                });
-            }
-        });
-
-
-        // Handle the errors
-    }, function(errorObject) {
-        console.log("Errors handled: " + errorObject.code);
-    });
-
 
     
-
-    database.ref().set({
-        objThingy:JSON.stringify(objThingy)
-    });
 });
 </script>
 </body>
