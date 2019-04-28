@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("ur mum not gay");
+    console.log("ur mum isn't not gay");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
@@ -59,7 +59,7 @@ $(document).ready(function() {
     
     var db = firebase.firestore();
 
-    db.collection("posts").where("score", ">", "-1")
+    db.collection("posts").where("score", ">", -1)
     .onSnapshot(function(querySnapshot) {
         var posts = [];
         querySnapshot.forEach(function(doc) {
