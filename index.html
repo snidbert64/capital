@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("ur mum isn't not gay");
+    console.log("Did");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
@@ -66,6 +66,11 @@ $(document).ready(function() {
             posts.push(doc.data().content);
         });
         console.log(posts);
+    });
+
+    db.collection("users")
+    .onSnapshot(function(querySnapshot) {
+        console.log(querySnapshot);
     });
 
     
