@@ -43,9 +43,6 @@ $(document).ready(function() {
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         name = profile.getName();
-        if (users[name] === undefined) {
-            users[name] = 100;
-        }
     }
     
 
@@ -66,7 +63,7 @@ $(document).ready(function() {
     .onSnapshot(function(querySnapshot) {
         var posts = [];
         querySnapshot.forEach(function(doc) {
-            posts.push(doc.data().name);
+            posts.push(doc.data().content);
         });
         console.log(posts);
     });
