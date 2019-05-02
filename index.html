@@ -50,6 +50,7 @@ $(document).ready(function() {
     var name;
 
     function onSignIn(googleUser) {
+        console.log("Signed In!");
         var profile = googleUser.getBasicProfile();
         name = profile.getName();
         console.log("Welcome, " + name);
@@ -75,7 +76,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("The");
+    console.log("Tragedy");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
