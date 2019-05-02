@@ -43,6 +43,7 @@ $(document).ready(function() {
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         name = profile.getName();
+        console.log("Welcome, " + name);
 
         db.collection("users").where("name", "==", name)
         .onSnapshot(function(querySnapshot) {
@@ -65,7 +66,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("You");
+    console.log("Ever");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
@@ -82,7 +83,7 @@ $(document).ready(function() {
     .onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             var post = $("<div>");
-            $("<h4>"+ doc.data().author).appendTo(post);
+            $("<h4>"+ doc.data().author + "</h4>").appendTo(post);
             $("<button data-author='"+ doc.data().author +"' data-id='" + doc.data().id + "'>" + doc.data().score + "</button>").appendTo(post);
             $("<p>" + doc.data().content + "</p>").appendTo(post);
             post.appendTo($("#chat"));
