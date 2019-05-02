@@ -26,7 +26,7 @@
 </head>
       
 <body>
-<div id="control-panel"><span id="name">Nobody</span><span id="score">100</span></div>
+<div id="control-panel"><span id="name">Nobody</span> <span id="score">100</span></div>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <form id="chat-form">
             <label for="chat-input">Make a new post</label>
@@ -47,7 +47,7 @@ $(document).ready(function() {
         db.collection("users").where("name", "==", name)
         .onSnapshot(function(querySnapshot) {
             console.log(querySnapshot);
-            if (querySnapshot.docs).size === 0){
+            if (querySnapshot.docs.size === 0){
                 db.collection("users").add({
                     name: name,
                     score: 100 
@@ -65,7 +65,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("Did");
+    console.log("You");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
