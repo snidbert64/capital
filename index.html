@@ -27,7 +27,7 @@
       
 <body>
 <div id="control-panel"><span id="name">Nobody</span> <span id="score">100</span></div>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div class="g-signin2" data-onsuccess="onSignIn();"></div>
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
   function signOut() {
@@ -76,7 +76,7 @@ $(document).ready(function() {
     }
     
 
-    console.log("Tragedy");
+    console.log("Of");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
