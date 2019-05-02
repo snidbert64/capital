@@ -36,7 +36,11 @@ $(document).ready(function() {
     // }
     
 
+<<<<<<< HEAD
     console.log("Plagueis");
+=======
+    console.log("Darth");
+>>>>>>> 73d43cd7db928dfd671c2b650df2b4a77060ad8d
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
