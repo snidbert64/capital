@@ -83,7 +83,7 @@ $(document).ready(function() {
         querySnapshot.forEach(function(doc) {
             var post = $("<div>");
             $("<h4>"+ doc.data().author).appendTo(post);
-            $("<button data-author='"+ doc.data().author +"' data-id='" + doc.data().id; + "'>" + doc.data().score + "</button>").appendTo(post);
+            $("<button data-author='"+ doc.data().author +"' data-id='" + doc.data().id + "'>" + doc.data().score + "</button>").appendTo(post);
             $("<p>" + doc.data().content + "</p>").appendTo(post);
             post.appendTo($("#chat"));
         });
