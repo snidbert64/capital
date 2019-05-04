@@ -10,7 +10,7 @@ $(document).ready(function() {
             scope: 'email',
             fetch_basic_profile: false
             })
-            _enableGoogleButton()
+            enableGoogleButton()
         });
     }
 
