@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var name;
 
-    var _auth2
+    var _auth2;
 
     var _onGoogleLoad = function () {
     gapi.load('auth2', function () {
@@ -24,7 +24,8 @@ $(document).ready(function() {
         console.log('Email: ' + profile.getEmail());
     }
 
-    function onSignIn(googleUser) {
+    function onSignIn() {
+        const googleUser = gapi.auth2.getAuthInstance().currentUser.get();
         var profile = googleUser.getBasicProfile();
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         console.log('Name: ' + profile.getName());
@@ -59,7 +60,7 @@ $(document).ready(function() {
     // }
     
 
-    console.log("The");
+    console.log("Wise?");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
