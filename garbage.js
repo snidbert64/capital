@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     var auth2;
 
-    var _onGoogleLoad = function () {
+    var onGoogleLoad = function () {
         gapi.load('auth2', function () {
             auth2 = gapi.auth2.init({
             client_id: 'OUR_REAL_ID_GOES_HERE',
@@ -11,7 +11,7 @@ $(document).ready(function() {
             fetch_basic_profile: false
             })
             _enableGoogleButton()
-        })
+        });
     }
 
 
