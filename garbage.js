@@ -4,14 +4,15 @@ $(document).ready(function() {
     var _auth2;
 
     var _onGoogleLoad = function () {
-    gapi.load('auth2', function () {
-        _auth2 = gapi.auth2.init({
-        client_id: 'OUR_REAL_ID_GOES_HERE',
-        scope: 'email',
-        fetch_basic_profile: false
+        gapi.load('auth2', function () {
+            _auth2 = gapi.auth2.init({
+            client_id: 'OUR_REAL_ID_GOES_HERE',
+            scope: 'email',
+            fetch_basic_profile: false
+            })
+            _enableGoogleButton()
         })
-        _enableGoogleButton()
-    })
+    }
 
 
     if (_auth2.isSignedIn.get()) {
@@ -85,5 +86,4 @@ $(document).ready(function() {
     });
 
 
-}
 });
