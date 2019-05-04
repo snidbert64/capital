@@ -1,9 +1,20 @@
 $(document).ready(function() {
     var name;
 
-    var auth2 = gapi.auth2.init();
+    var _auth2
 
-    if (auth2.isSignedIn.get()) {
+    var _onGoogleLoad = function () {
+    gapi.load('auth2', function () {
+        _auth2 = gapi.auth2.init({
+        client_id: 'OUR_REAL_ID_GOES_HERE',
+        scope: 'email',
+        fetch_basic_profile: false
+        })
+        _enableGoogleButton()
+    })
+    }
+
+    if (_auth2.isSignedIn.get()) {
         var profile = auth2.currentUser.get().getBasicProfile();
         console.log('ID: ' + profile.getId());
         console.log('Full Name: ' + profile.getName());
