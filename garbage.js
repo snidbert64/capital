@@ -12,7 +12,7 @@ $(document).ready(function() {
         })
         _enableGoogleButton()
     })
-    }
+
 
     if (_auth2.isSignedIn.get()) {
         var profile = auth2.currentUser.get().getBasicProfile();
@@ -85,5 +85,5 @@ $(document).ready(function() {
     });
 
 
-    
+}
 });
