@@ -119,7 +119,7 @@ var refreshValues = function() {
     // }
     
 
-    console.log("I");
+    console.log("Thought");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
