@@ -1,11 +1,11 @@
 $(document).ready(function() {
     var name;
 
-    var _auth2;
+    var auth2;
 
     var _onGoogleLoad = function () {
         gapi.load('auth2', function () {
-            _auth2 = gapi.auth2.init({
+            auth2 = gapi.auth2.init({
             client_id: 'OUR_REAL_ID_GOES_HERE',
             scope: 'email',
             fetch_basic_profile: false
@@ -15,7 +15,7 @@ $(document).ready(function() {
     }
 
 
-    if (_auth2.isSignedIn.get()) {
+    if (auth2.isSignedIn.get()) {
         var profile = auth2.currentUser.get().getBasicProfile();
         console.log('ID: ' + profile.getId());
         console.log('Full Name: ' + profile.getName());
@@ -61,7 +61,7 @@ $(document).ready(function() {
     // }
     
 
-    console.log("Wise?");
+    console.log("I");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
