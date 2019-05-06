@@ -1,125 +1,28 @@
 $(document).ready(function() {
-    var auth2; // The Sign-In object.
-var googleUser; // The current user.
+  
+  var provider = new firebase.auth.GoogleAuthProvider();
 
-/**
- * Calls startAuth after Sign in V2 finishes setting up.
- */
-var appStart = function() {
-  gapi.load('auth2', initSigninV2);
-};
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
 
-/**
- * Initializes Signin v2 and sets up listeners.
- */
-var initSigninV2 = function() {
-  auth2 = gapi.auth2.init({
-      client_id: 'CLIENT_ID.apps.googleusercontent.com',
-      scope: 'profile'
+    console.log(user);
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
   });
-
-  // Listen for sign-in state changes.
-  auth2.isSignedIn.listen(signinChanged);
-
-  // Listen for changes to current user.
-  auth2.currentUser.listen(userChanged);
-
-  // Sign in the user if they are currently signed in.
-  if (auth2.isSignedIn.get() == true) {
-    auth2.signIn();
-  }
-
-  // Start with the current live values.
-  refreshValues();
-};
-
-/**
- * Listener method for sign-out live value.
- *
- * @param {boolean} val the updated signed out state.
- */
-var signinChanged = function (val) {
-  console.log('Signin state changed to ', val);
-  document.getElementById('signed-in-cell').innerText = val;
-};
-
-/**
- * Listener method for when the user changes.
- *
- * @param {GoogleUser} user the updated user.
- */
-var userChanged = function (user) {
-  console.log('User now: ', user);
-  googleUser = user;
-  updateGoogleUser();
-  document.getElementById('curr-user-cell').innerText =
-    JSON.stringify(user, undefined, 2);
-};
-
-/**
- * Updates the properties in the Google User table using the current user.
- */
-var updateGoogleUser = function () {
-  if (googleUser) {
-    document.getElementById('user-id').innerText = googleUser.getId();
-    document.getElementById('user-scopes').innerText =
-      googleUser.getGrantedScopes();
-    document.getElementById('auth-response').innerText =
-      JSON.stringify(googleUser.getAuthResponse(), undefined, 2);
-  } else {
-    document.getElementById('user-id').innerText = '--';
-    document.getElementById('user-scopes').innerText = '--';
-    document.getElementById('auth-response').innerText = '--';
-  }
-};
-
-/**
- * Retrieves the current user and signed in states from the GoogleAuth
- * object.
- */
-var refreshValues = function() {
-  if (auth2){
-    console.log('Refreshing values...');
-
-    googleUser = auth2.currentUser.get();
-
-    document.getElementById('curr-user-cell').innerText =
-      JSON.stringify(googleUser, undefined, 2);
-    document.getElementById('signed-in-cell').innerText =
-      auth2.isSignedIn.get();
-
-    updateGoogleUser();
-  }
-}
-
-    // function onSignIn(googleUser) {
-    //     console.log("Signed In!");
-    //     var profile = googleUser.getBasicProfile();
-    //     name = profile.getName();
-    //     console.log("Welcome, " + name);
-
-    //     db.collection("users").where("name", "==", name)
-    //     .onSnapshot(function(querySnapshot) {
-    //         console.log(querySnapshot);
-    //         if (querySnapshot.docs.size === 0){
-    //             db.collection("users").add({
-    //                 name: name,
-    //                 score: 100 
-    //             })
-    //             .then(function(docRef) {
-    //                 console.log("User added with ID: ", docRef.id);
-    //             })
-    //             .catch(function(error) {
-    //                 console.error("Error adding user: ", error);
-    //             });
-    //         }
-
-
-    //     });
-    // }
     
 
-    console.log("Not.");
+    console.log("It's");
 
     firebase.initializeApp({
         apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
