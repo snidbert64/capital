@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+  firebase.initializeApp({
+    apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
+    authDomain: 'https://capital-1556235479390.firebaseio.com/',
+    projectId: 'capital-1556235479390'
+  });
   
   var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -24,11 +30,7 @@ $(document).ready(function() {
 
     console.log("It's");
 
-    firebase.initializeApp({
-        apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
-        authDomain: 'https://capital-1556235479390.firebaseio.com/',
-        projectId: 'capital-1556235479390'
-    });
+
 
     // import("firebase/app");
     // import("firebase/firestore");
