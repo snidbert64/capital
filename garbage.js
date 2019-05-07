@@ -13,9 +13,10 @@ $(document).ready(function() {
 
   // Add a new document in collection "cities"
 
-  console.log("It's");
+  console.log("Gosh darn it, I was trying to do the Tragedy of Darth Plagueis the Wise with this console log, but I think I screwed it up.");
 
   $("#add-chat").on("click", function(){
+    event.preventDefault();
     db.collection("posts").add({
       author: "Nobody",
       content: $("#chat-input").val(),
