@@ -13,10 +13,10 @@ $(document).ready(function() {
 
   // Add a new document in collection "cities"
 
-  console.log("Not");
+  console.log("It's");
 
   $("#add-chat").on("click", function(){
-    db.collection("posts").doc("LA").set({
+    db.collection("posts").add({
       author: "Nobody",
       content: $("#chat-input").val(),
       date: new Date(),
