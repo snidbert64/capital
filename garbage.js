@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   // Add a new document in collection "cities"
 
-  console.log("It's");
+  console.log("Not");
 
   $("#add-chat").on("click", function(){
     db.collection("posts").doc("LA").set({
