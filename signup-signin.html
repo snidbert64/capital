@@ -56,6 +56,12 @@
         </form>
 
 <script>
+    firebase.initializeApp({
+        apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
+        authDomain: 'https://capital-1556235479390.firebaseio.com/',
+        projectId: 'capital-1556235479390'
+    });
+
     $("#signup").on("click", function(){
         event.preventDefault();
         var email = $("#email").val();
