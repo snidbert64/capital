@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>Capital</title>
+    
+    <!-- Bootstrap
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+    
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+
+  
+
+    
+    <!-- Moment.js Reference -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="224801706485-p4ma0qdd2igcqjd32ulvkh4q75fa7ves.apps.googleusercontent.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+</head>
+
+<body>
+    <a href="index.html">Return to main page</a>
+    <form id="signup-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username"><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email"><br>
+        <label for="password">Password:</label>
+        <input type="text" id="password"><br>
+    
+        <!-- Button triggers new chat to be added -->
+        <input id="signup" type="submit" value="Sign Up!">
+    </form>
+    <form id="signin-form">
+            <label for="signin-email">Email:</label>
+            <input type="text" id="signin-email"><br>
+            <label for="signin-password">Password:</label>
+            <input type="text" id="signin-password"><br>
+        
+            <!-- Button triggers new chat to be added -->
+            <input id="signin" type="submit" value="Sign In if you already have an account!">
+        </form>
+
+<script>
+    $("#signup").on("click", function(){
+        event.preventDefault();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var username = $("#username").val();
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+        db.collection("posts").add({
+            email: email,
+            name: $("#chat-input").val(),
+            score: 100
+        })
+        .then(function() {
+            console.log("User successfully added!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+
+    });
+
+</script>
+</body>
+
+</html>
