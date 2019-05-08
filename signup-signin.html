@@ -78,7 +78,7 @@
 
         db.collection("posts").add({
             email: email,
-            name: $("#chat-input").val(),
+            name: username,
             score: 100
         })
         .then(function() {
