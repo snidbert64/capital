@@ -11,6 +11,25 @@ $(document).ready(function() {
     
     var db = firebase.firestore();
 
+    var user = firebase.auth().currentUser;
+
+    var email;
+
+    if (user != null) {
+      email = user.email;
+
+      db.collection("users").where("email", "==", email)
+      .onSnapshot(function(querySnapshot) {
+        $("#chat").empty();
+        querySnapshot.forEach(function(doc) {
+            $("#name").html(doc.data().name);
+            $("#score").html(doc.data().score);
+        });
+      });
+    }
+
+
+
   // Add a new document in collection "cities"
 
   console.log("Oh well");
