@@ -37,7 +37,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("Oh well");
+  console.log("oof");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
