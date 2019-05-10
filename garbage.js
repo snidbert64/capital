@@ -31,7 +31,7 @@ $(document).ready(function() {
       .onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           username = doc.data().name;
-          userid = doc.data().name;
+          userid = doc.data().id;
             $("#name").html(doc.data().name);
             $("#score").html(doc.data().score);
         });
@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("Time Travel!");
+  console.log("I see this as an absolute win!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
