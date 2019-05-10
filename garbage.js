@@ -1,5 +1,3 @@
-import { EventEmitter } from "events";
-
 $(document).ready(function() {
 
   firebase.initializeApp({
