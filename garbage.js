@@ -15,7 +15,10 @@ $(document).ready(function() {
 
     var email;
 
-    if (user != null) {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+
       console.log("There is a user logged in!");
 
       email = user.email;
@@ -28,7 +31,11 @@ $(document).ready(function() {
             $("#score").html(doc.data().score);
         });
       });
+    } else {
+      // No user is signed in.
+      console.log("There is not a user logged in!");
     }
+  });
 
   console.log("Oh well");
 
