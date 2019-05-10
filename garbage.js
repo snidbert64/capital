@@ -37,7 +37,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("oof");
+  console.log("foo");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -55,7 +55,7 @@ $(document).ready(function() {
     });
   });
 
-    db.collection("posts").where("score", ">", -1)
+    db.collection("posts").orderBy("score")
     .onSnapshot(function(querySnapshot) {
       $("#chat").empty();
       querySnapshot.forEach(function(doc) {
