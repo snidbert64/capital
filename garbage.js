@@ -1,6 +1,6 @@
-import { EventEmitter } from "events";
-
 $(document).ready(function() {
+
+  // shut up, dad
 
   firebase.initializeApp({
     apiKey: 'AIzaSyCpx0dAKNSqol9123GLyuhaIqkzLvdIVrA',
