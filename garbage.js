@@ -37,22 +37,24 @@ $(document).ready(function() {
     }
   });
 
-  console.log("foodie");
+  console.log("I see this as an absolute win!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
-    db.collection("posts").add({
-      author: username,
-      content: $("#chat-input").val(),
-      date: new Date(),
-      score: 0
-    })
-    .then(function() {
-      console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
+    if (username != null) {
+      db.collection("posts").add({
+        author: username,
+        content: $("#chat-input").val(),
+        date: new Date(),
+        score: 0
+      })
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+      });
+    }
   });
 
     db.collection("posts").orderBy("score", "desc")
