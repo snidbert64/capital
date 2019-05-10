@@ -11,7 +11,7 @@ $(document).ready(function() {
     
     var db = firebase.firestore();
 
-    var user = firebase.auth().currentUser;
+    var username;
 
     var email;
 
@@ -27,6 +27,7 @@ $(document).ready(function() {
       .onSnapshot(function(querySnapshot) {
         $("#chat").empty();
         querySnapshot.forEach(function(doc) {
+          username = doc.data().name;
             $("#name").html(doc.data().name);
             $("#score").html(doc.data().score);
         });
@@ -37,12 +38,12 @@ $(document).ready(function() {
     }
   });
 
-  console.log("food");
+  console.log("foodstuff");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
     db.collection("posts").add({
-      author: user.name,
+      author: username,
       content: $("#chat-input").val(),
       date: new Date(),
       score: 0
