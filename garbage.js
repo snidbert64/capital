@@ -25,7 +25,6 @@ $(document).ready(function() {
 
       db.collection("users").where("email", "==", email)
       .onSnapshot(function(querySnapshot) {
-        $("#chat").empty();
         querySnapshot.forEach(function(doc) {
           username = doc.data().name;
             $("#name").html(doc.data().name);
@@ -38,7 +37,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("foodstuff");
+  console.log("foodie");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
