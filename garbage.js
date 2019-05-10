@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I see this as an absolute win!");
+  console.log("I don't see this as an absolute win. :(");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -80,6 +80,8 @@ $(document).ready(function() {
         event.preventDefault();
   
         console.log("Clicked!");
+
+        console.log(userid);
   
         if (userid != null) {
           db.collection("posts").doc($(this).attr("data-id")).update({
