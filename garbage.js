@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I see this as an absolute win!");
+  console.log("I see this as an absolute win!!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -78,6 +78,8 @@ $(document).ready(function() {
     $(".upvote-button").on("click", function(){
       event.preventDefault();
 
+      console.log("Clicked!");
+
       if (userid != null) {
         db.collection("posts").doc($(this).attr("data-id")).update({
           score: firebase.firestore.FieldValue.increment(1)
@@ -86,6 +88,8 @@ $(document).ready(function() {
         db.collection("users").doc(userid).doc(userid).update({
           score: firebase.firestore.FieldValue.increment(-1)
         });
+
+        console.log("upvoted!");
 
         if (userid !== $(this).attr("data-authorid")) {
           db.collection("posts").doc($(this).attr("data-authorid")).update({
