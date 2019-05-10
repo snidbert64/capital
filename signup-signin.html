@@ -90,6 +90,21 @@
 
     });
 
+    $("#signin").on("click", function(){
+
+        event.preventDefault();
+
+        var email = $("#signin-email").val();
+        var password = $("#signin-password").val();
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+        });
+    });
+
 </script>
 </body>
 

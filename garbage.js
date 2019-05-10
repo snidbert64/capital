@@ -16,6 +16,8 @@ $(document).ready(function() {
     var email;
 
     if (user != null) {
+      console.log("There is a user logged in!");
+
       email = user.email;
 
       db.collection("users").where("email", "==", email)
@@ -27,10 +29,6 @@ $(document).ready(function() {
         });
       });
     }
-
-
-
-  // Add a new document in collection "cities"
 
   console.log("Oh well");
 
