@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I see this as an absolute win!");
+  console.log("Nobody but me is gonna read this, so it doesn't matter what I put here");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -88,7 +88,7 @@ $(document).ready(function() {
             score: firebase.firestore.FieldValue.increment(1)
           });
   
-          db.collection("users").doc(userid).doc(userid).update({
+          db.collection("users").doc(userid).update({
             score: firebase.firestore.FieldValue.increment(-1)
           });
   
