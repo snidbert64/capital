@@ -31,7 +31,7 @@ $(document).ready(function() {
       .onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           username = doc.data().name;
-          userid = doc.data().id;
+          userid = doc.id;
             $("#name").html(doc.data().name);
             $("#score").html(doc.data().score);
         });
@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I don't see this as an absolute win. :(");
+  console.log("I see this as an absolute win!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -69,7 +69,7 @@ $(document).ready(function() {
       querySnapshot.forEach(function(doc) {
           var post = $("<div>");
           $("<h4>"+ doc.data().author + "</h4>").appendTo(post);
-          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.data().id + "'>" + doc.data().score + "</button>").appendTo(post);
+          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>" + doc.data().score + "</button>").appendTo(post);
           $("<p>" + doc.data().content + "</p>").appendTo(post);
           post.appendTo($("#chat"));
       });
