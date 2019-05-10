@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I see this as an absolute win!!");
+  console.log("I see this as an absolute win!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
@@ -73,31 +73,35 @@ $(document).ready(function() {
           $("<p>" + doc.data().content + "</p>").appendTo(post);
           post.appendTo($("#chat"));
       });
-    });
 
-    $(".upvote-button").on("click", function(){
-      event.preventDefault();
+      $(".upvote-button").off("click");
 
-      console.log("Clicked!");
-
-      if (userid != null) {
-        db.collection("posts").doc($(this).attr("data-id")).update({
-          score: firebase.firestore.FieldValue.increment(1)
-        });
-
-        db.collection("users").doc(userid).doc(userid).update({
-          score: firebase.firestore.FieldValue.increment(-1)
-        });
-
-        console.log("upvoted!");
-
-        if (userid !== $(this).attr("data-authorid")) {
-          db.collection("posts").doc($(this).attr("data-authorid")).update({
+      $(".upvote-button").on("click", function(){
+        event.preventDefault();
+  
+        console.log("Clicked!");
+  
+        if (userid != null) {
+          db.collection("posts").doc($(this).attr("data-id")).update({
             score: firebase.firestore.FieldValue.increment(1)
           });
+  
+          db.collection("users").doc(userid).doc(userid).update({
+            score: firebase.firestore.FieldValue.increment(-1)
+          });
+  
+          console.log("upvoted!");
+  
+          if (userid !== $(this).attr("data-authorid")) {
+            db.collection("posts").doc($(this).attr("data-authorid")).update({
+              score: firebase.firestore.FieldValue.increment(1)
+            });
+          }
         }
-      }
+      });
     });
+
+
 
 
 });
