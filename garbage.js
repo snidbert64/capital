@@ -37,7 +37,7 @@ $(document).ready(function() {
     }
   });
 
-  console.log("foo");
+  console.log("food");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
