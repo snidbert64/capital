@@ -95,7 +95,7 @@ $(document).ready(function() {
           console.log("upvoted!");
   
           if (userid !== $(this).attr("data-authorid")) {
-            db.collection("posts").doc($(this).attr("data-authorid")).update({
+            db.collection("users").doc($(this).attr("data-authorid")).update({
               score: firebase.firestore.FieldValue.increment(1)
             });
           }
