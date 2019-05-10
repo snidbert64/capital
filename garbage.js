@@ -1,3 +1,5 @@
+import { EventEmitter } from "events";
+
 $(document).ready(function() {
 
   firebase.initializeApp({
@@ -15,6 +17,8 @@ $(document).ready(function() {
 
     var email;
 
+    var userid;
+
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
@@ -27,6 +31,7 @@ $(document).ready(function() {
       .onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           username = doc.data().name;
+          userid = doc.data().name;
             $("#name").html(doc.data().name);
             $("#score").html(doc.data().score);
         });
@@ -37,13 +42,14 @@ $(document).ready(function() {
     }
   });
 
-  console.log("I see this as an absolute win!");
+  console.log("Time Travel!");
 
   $("#add-chat").on("click", function(){
     event.preventDefault();
     if (username != null) {
       db.collection("posts").add({
         author: username,
+        authorid: userid,
         content: $("#chat-input").val(),
         date: new Date(),
         score: 0
@@ -63,10 +69,30 @@ $(document).ready(function() {
       querySnapshot.forEach(function(doc) {
           var post = $("<div>");
           $("<h4>"+ doc.data().author + "</h4>").appendTo(post);
-          $("<button data-author='"+ doc.data().author +"' data-id='" + doc.data().id + "'>" + doc.data().score + "</button>").appendTo(post);
+          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.data().id + "'>" + doc.data().score + "</button>").appendTo(post);
           $("<p>" + doc.data().content + "</p>").appendTo(post);
           post.appendTo($("#chat"));
       });
+    });
+
+    $(".upvote-button").on("click", function(){
+      event.preventDefault();
+
+      if (userid != null) {
+        db.collection("posts").doc($(this).attr("data-id")).update({
+          score: firebase.firestore.FieldValue.increment(1)
+        });
+
+        db.collection("users").doc(userid).doc(userid).update({
+          score: firebase.firestore.FieldValue.increment(-1)
+        });
+
+        if (userid !== $(this).attr("data-authorid")) {
+          db.collection("posts").doc($(this).attr("data-authorid")).update({
+            score: firebase.firestore.FieldValue.increment(1)
+          });
+        }
+      }
     });
 
 
