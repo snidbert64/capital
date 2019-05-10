@@ -42,7 +42,7 @@ $(document).ready(function() {
   $("#add-chat").on("click", function(){
     event.preventDefault();
     db.collection("posts").add({
-      author: "Nobody",
+      author: user.name,
       content: $("#chat-input").val(),
       date: new Date(),
       score: 0
@@ -55,7 +55,7 @@ $(document).ready(function() {
     });
   });
 
-    db.collection("posts").orderBy("score")
+    db.collection("posts").orderBy("score", "desc")
     .onSnapshot(function(querySnapshot) {
       $("#chat").empty();
       querySnapshot.forEach(function(doc) {
