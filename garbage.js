@@ -67,6 +67,7 @@ $(document).ready(function() {
     .onSnapshot(function(querySnapshot) {
       $("#chat").empty();
       querySnapshot.forEach(function(doc) {
+<<<<<<< HEAD
         $("<hr>").appendTo($("#chat"));
         var post = $("<div>");
         $("<strong>"+ doc.data().author + " </strong>").appendTo(post);
@@ -74,6 +75,13 @@ $(document).ready(function() {
         $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>+</button>").appendTo(post);
         $("<p>" + doc.data().content + "</p>").appendTo(post);
         post.appendTo($("#chat"));
+=======
+          var post = $("<div>");
+          $("<strong>"+ doc.data().author + " </strong>").appendTo(post);
+          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>Upvote (" + doc.data().score + ")</button>").appendTo(post);
+          $("<p>" + doc.data().content + "</p>").appendTo(post);
+          post.appendTo($("#chat"));
+>>>>>>> e332d697ab54cf17e1e7df64d61e1e82b0bb6b54
       });
 
       $(".upvote-button").off("click");
