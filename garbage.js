@@ -67,11 +67,13 @@ $(document).ready(function() {
     .onSnapshot(function(querySnapshot) {
       $("#chat").empty();
       querySnapshot.forEach(function(doc) {
-          var post = $("<div>");
-          $("<strong>"+ doc.data().author + " </strong>").appendTo(post);
-          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>Upvote (" + doc.data().score + ")</button>").appendTo(post);
-          $("<p>" + doc.data().content + "</p>").appendTo(post);
-          post.appendTo($("#chat"));
+        $("<hr>").appendTo($("#chat"));
+        var post = $("<div>");
+        $("<strong>"+ doc.data().author + " </strong>").appendTo(post);
+        $("<span>" + doc.data().score + " points</span>").appendTo(post);
+        $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>+</button>").appendTo(post);
+        $("<p>" + doc.data().content + "</p>").appendTo(post);
+        post.appendTo($("#chat"));
       });
 
       $(".upvote-button").off("click");
