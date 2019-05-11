@@ -41,8 +41,22 @@
 </head>
       
 <body>
-<div id="control-panel"><span id="name">Nobody</span> <span id="score">0</span></div>
-<a href="signup-signin.html">Sign Up/Sign In</a>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#">Capital</a>
+        </div>
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li id="name">Nobody</li>
+        <li id="score">0</li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="signup-signin.html"><span class="glyphicon glyphicon-user"></span> Sign Up/Sign In</a></li>
+        </ul>
+    </div>
+</nav>
 
 <form id="chat-form">
             <label for="chat-input">Make a new post</label>
