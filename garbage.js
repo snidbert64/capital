@@ -68,8 +68,8 @@ $(document).ready(function() {
       $("#chat").empty();
       querySnapshot.forEach(function(doc) {
           var post = $("<div>");
-          $("<strong>"+ doc.data().author + "</strong>").appendTo(post);
-          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>" + doc.data().score + "</button>").appendTo(post);
+          $("<strong>"+ doc.data().author + " </strong>").appendTo(post);
+          $("<button class='upvote-button' data-authorid='" + doc.data().authorid + "' data-author='"+ doc.data().author +"' data-id='" + doc.id + "'>Upvote (" + doc.data().score + ")</button>").appendTo(post);
           $("<p>" + doc.data().content + "</p>").appendTo(post);
           post.appendTo($("#chat"));
       });
